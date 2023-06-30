@@ -23,25 +23,6 @@ const useCart = create(
         }));
       },
 
-      reduceProduct: ({ params, mycart }) => {
-        set((state) => {
-          let cartContent = {};
-
-          if (params.quantity <= 1) {
-            cartContent = state.cartContent.filter(product => product.id !== params.id)
-          }
-          else{
-            cartContent = state.cartContent
-          }
-
-          return {
-            totalqty: state.totalqty > 1 ? state.totalqty - 1 : 0,
-            total: state.totalqty > 1 ? state.total - parseFloat(params.price) : 0,
-            cartContent: state.totalqty > 1 ? cartContent : [],
-          }
-        });
-      },
-
       clearCart: () => set({ totalqty: 0, total: 0, cartContent: [] }),
 
       removeFromCart: (params) =>
