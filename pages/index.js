@@ -44,9 +44,10 @@ export default function Home() {
                 <Image
                   src={product?.images[0]}
                   alt={product.title}
-                  width={200}
-                  height={200}
-                  className="object-center object-cover"
+                  width={160}
+                  height={160}
+                  priority
+                  className="object-center object-cover w-auto h-auto"
                 />
               </div>
               <h3 className="mt-4 text-sm text-gray-700">{product.title}</h3>
@@ -58,7 +59,7 @@ export default function Home() {
                   ...product,
                   quantity: 1,
                 })
-              } class="px-6 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">Add
+              } className="px-6 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">Add
                 to cart</button>
             </div>
           ))}
