@@ -8,8 +8,8 @@ export default function Home() {
   const addTocart = useCart((state) => state.addTocart);
   const updatecart = useCart((state) => state.updatecart);
   const mycart = useCart((state) => state.cartContent);
-  const [products,setProducts] = useState([]);
-  
+  const [products, setProducts] = useState([]);
+
   const addProduct = (params) => {
     const product = mycart.findIndex((item) => item.id === params.id);
     if (product !== -1) {
@@ -26,27 +26,21 @@ export default function Home() {
       setProducts(response.data.products)
     }
     getProducts()
-  },[])
+  }, [])
 
   return (
     <>
       <Header />
-      <div className="container mx-auto pt-4">
+      <div className="w-9/12 mx-auto pt-4">
         <div className="pb-4">PRODUCTS</div>
         <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (
-            <a
+            <div
               key={product.id}
               href="#"
-              onClick={() =>
-                addProduct({
-                  ...product,
-                  quantity: 1,
-                })
-              }
-              className="group"
+              className="group rounded-md bg-white shadow-lg flex flex-col h-80 justify-evenly p-5"
             >
-              <div className="w-full aspect-w-1 aspect-h-1 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+              <div className="rounded-lg overflow-hidden h-40 flex flex-col items-center">
                 <Image
                   src={product?.images[0]}
                   alt={product.title}
@@ -59,7 +53,14 @@ export default function Home() {
               <p className="mt-1 text-lg font-medium text-gray-900">
                 ${product.price}
               </p>
-            </a>
+              <button onClick={() =>
+                addProduct({
+                  ...product,
+                  quantity: 1,
+                })
+              } class="px-6 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">Add
+                to cart</button>
+            </div>
           ))}
         </div>
       </div>
